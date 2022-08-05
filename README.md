@@ -21,7 +21,7 @@ OS: Ubuntu 14.04 LTS
 Compiler: gcc 4.8.4
 Style guidelines: Betty style
 How To Install & Compile
-(terminal)$ git clone https://github.com/MelissaN/printf.git
+(terminal)$ git clone https://github.com/oluwayoy/printf.git
 (terminal)$ cd printf
 Sample main program inside print.c:
 
@@ -41,4 +41,5 @@ More functionality can still be added (e.g. support field width specifiers, etc)
 
 Authors
 
-Emmanuel      paul
+Emmanuel  ![image](https://user-images.githubusercontent.com/107483062/183073186-6eca3ea6-249d-48d9-8049-5d25fca2da6d.png)
+    paul
