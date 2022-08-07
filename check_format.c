@@ -20,8 +20,6 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 	/*buffer = malloc(1024);*/
 	switch (format[count])
 	{
-		case 'u':
-		case 'i':
 		case 'd':
 			{
 				if (*ptr_is_long)
