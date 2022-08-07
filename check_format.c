@@ -27,7 +27,7 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 				if (*ptr_is_long)
 					n = va_arg(args, long);
 				/* else if (*ptr_is_short)
-				 * n = va_arg(args, short);*/
+				 	n = va_arg(args, short);*/
 				else
 					n = va_arg(args, int);
 				signedNumberToString(n, DECIMAL, buffer, format, count);
@@ -60,8 +60,20 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 			{
 				if (*ptr_is_long)
 					n = va_arg(args, unsigned long);
+				/* else if (*ptr_is_short)
+				 	n = (short int)va_arg(args, int);*/
+				else
+					n = va_arg(args, unsigned int);
+				unsignedNumberToString(n, HEX, buffer, format, count);
+				print_count = print_string(buffer, flags, 1);
+				break;
+			}
+		case 'X':
+			{
+				if (*ptr_is_long)
+					n = va_arg(args, unsigned long);
 				/*else if (*ptr_is_short)
-				 * n = va_arg(args, short);*/
+				 	n = va_arg(args, short);*/
 				else
 					n = va_arg(args, unsigned int);
 				unsignedNumberToString(n, HEX, buffer, format, count);
@@ -73,7 +85,7 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 				if (*ptr_is_long)
 					n = va_arg(args, unsigned long);
 				/*else if (*ptr_is_short)
-				 * n = va_arg(args, short);*/
+				 	n = va_arg(args, short);*/
 				else
 					n = va_arg(args, unsigned int);
 				unsignedNumberToString(n, OCTAL, buffer, format, count);
@@ -116,6 +128,20 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 				s = reversed(s);
 				print_count = print_string(s, flags, 0);
 				free(s);
+				break;
+			}
+		case '%':
+			{
+				_putchar('%');
+				print_count++;
+				break;
+			}
+		default:
+			{
+				_putchar('%');
+				ch = va_arg(args, int);
+				_putchar(ch);
+				print_count += 2;
 				break;
 			}
 	}
