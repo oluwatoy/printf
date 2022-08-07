@@ -22,8 +22,6 @@ char *rot13(va_list list);
 char *rev_string(va_list list);
 char *itoOctal(va_list list);
 
-
-
 /**
  * struct types - struct
  * @id: identifier of type to print (e.g. c means char)
