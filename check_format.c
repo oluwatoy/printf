@@ -102,3 +102,23 @@ int format_specifier(int count, const char *format, va_list args, int *reset, in
 				*reset = 0;
 				break;
 			}
+		case 'R':
+			{
+				s = va_arg(args, char *);
+				s = rot13(s);
+				print_count = print_string(s, flags, 0);
+				free(s);
+				break;
+			}
+		case 'r':
+			{
+				s = va_arg(args, char *);
+				s = reversed(s);
+				print_count = print_string(s, flags, 0);
+				free(s);
+				break;
+			}
+	}
+	/*free(buffer);*/
+	return (print_count);
+}
