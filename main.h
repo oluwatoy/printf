@@ -1,5 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
+
 #include <stdlib.h>
 #include <stdarg.h>
 /**
@@ -47,4 +48,5 @@ int print_rev(va_list l, flags_t *f);
 int print_bigS(va_list l, flags_t *f);
 int print_address(va_list l, flags_t *f);
 int print_percent(va_list l, flags_t *f);
+
 #endif
