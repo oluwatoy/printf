@@ -42,4 +42,4 @@ More functionality can still be added (e.g. support field width specifiers, etc)
 Authors
 
 Emmanuel  ![image](https://user-images.githubusercontent.com/107483062/183073186-6eca3ea6-249d-48d9-8049-5d25fca2da6d.png)
-    paul
+    paul Sunday
