@@ -5,6 +5,7 @@ int _printf(const char *format, ...);
 #ifndef MAIN_H
 #define MAIN_H
 
+<<<<<<< HEAD
 #include <stdarg.h> /* va_list */
 #include <stdlib.h> /* malloc, free */
 #include <unistd.h> /* write */
@@ -43,6 +44,8 @@ typedef struct types
 =======
 #ifndef MAIN_H
 #define MAIN_H
+=======
+>>>>>>> 7ec778b2ae15e6faf9427823c0351ddae3f3e68c
 #include <stdlib.h>
 #include <stdarg.h>
 /**
@@ -90,5 +93,9 @@ int print_rev(va_list l, flags_t *f);
 int print_bigS(va_list l, flags_t *f);
 int print_address(va_list l, flags_t *f);
 int print_percent(va_list l, flags_t *f);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7ec778b2ae15e6faf9427823c0351ddae3f3e68c
 #endif
 >>>>>>> paul
