@@ -1,101 +1,43 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-int _printf(const char *format, ...);
-=======
-#ifndef MAIN_H
-#define MAIN_H
-
-<<<<<<< HEAD
-#include <stdarg.h> /* va_list */
-#include <stdlib.h> /* malloc, free */
-#include <unistd.h> /* write */
-
-/* helper functions */
-char* (*get_func(char i))(va_list);
-char *create_buffer(void);
-void write_buffer(char *buffer, int len, va_list list);
-char *_strcpy(char *dest, char *src);
-int _strlen(char *s);
-
-/* printf functions */
-int _printf(const char *format, ...);
-char *print_s(va_list list);
-char *print_c(va_list list);
-char *print_d(va_list list);
-char *itob(va_list list);
-char *rot13(va_list list);
-char *rev_string(va_list list);
-char *itoOctal(va_list list);
-
+#include "main.h"
 /**
- * struct types - struct
- * @id: identifier of type to print (e.g. c means char)
- * @func: ptr to functions that print according to identifier (e.g. print_c)
+ * _printf - printf function
+ * @format: const char pointer
+ * Return: b_len
  */
-
-typedef struct types
+int _printf(const char *format, ...)
 {
-	char id;
-	char* (*func)(va_list);
-} print;
+	int (*pfunc)(va_list, flags_t *);
+	const char *p;
+	va_list arguments;
+	flags_t flags = {0, 0, 0};
 
-#endif
->>>>>>> f8d1bb87dc110d4ccf77393ee171844041779408
-=======
-#ifndef MAIN_H
-#define MAIN_H
-=======
->>>>>>> 7ec778b2ae15e6faf9427823c0351ddae3f3e68c
-#include <stdlib.h>
-#include <stdarg.h>
-/**
-* struct flags - struct containing flags to "turn on"
-* when a flag specifier is passed to _printf()
-* @plus: flag for the '+' character
-* @space: flag for the ' ' character
-* @hash: flag for the '#' character
-*/
-typedef struct flags
-{
-int plus;
-int space;
-int hash;
-} flags_t;
-/**
-* struct printHandler - struct to choose the right function depending
-* on the format specifier passed to _printf()
-* @c: format specifier
-* @f: pointer to the correct printing function
-*/
-typedef struct printHandler
-{
-char c;
-int (*f)(va_list ap, flags_t *f);
-} ph;
-int print_int(va_list l, flags_t *f);
-void print_number(int n);
-int print_unsigned(va_list l, flags_t *f);
-int count_digit(int i);
-int print_hex(va_list l, flags_t *f);
-int print_hex_big(va_list l, flags_t *f);
-int print_binary(va_list l, flags_t *f);
-int print_octal(va_list l, flags_t *f);
-char *convert(unsigned long int num, int base, int lowercase);
-int _printf(const char *format, ...);
-int (*get_print(char s))(va_list, flags_t *);
-int get_flag(char s, flags_t *f);
-int print_string(va_list l, flags_t *f);
-int print_char(va_list l, flags_t *f);
-int _putchar(char c);
-int _puts(char *str);
-int print_rot13(va_list l, flags_t *f);
-int print_rev(va_list l, flags_t *f);
-int print_bigS(va_list l, flags_t *f);
-int print_address(va_list l, flags_t *f);
-int print_percent(va_list l, flags_t *f);
-<<<<<<< HEAD
-=======
+	register int count = 0;
 
->>>>>>> 7ec778b2ae15e6faf9427823c0351ddae3f3e68c
-#endif
->>>>>>> paul
+	va_start(arguments, format);
+	if (!format || (format[0] == '%' && !format[1]))
+		return (-1);
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	for (p = format; *p; p++)
+	{
+		if (*p == '%')
+		{
+			p++;
+			if (*p == '%')
+			{
+				count += _putchar('%');
+				continue;
+			}
+			while (get_flag(*p, &flags))
+				p++;
+			pfunc = get_print(*p);
+			count += (pfunc)
+				? pfunc(arguments, &flags)
+				: _printf("%%%c", *p);
+		} else
+			count += _putchar(*p);
+	}
+	_putchar(-1);
+	va_end(arguments);
+	return (count);
+}
